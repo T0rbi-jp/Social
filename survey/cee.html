@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATTENTION!</title>
+
+<style>
+body, html {
+height: 100%;
+margin: 0;
+font-family: 'Arial Black', 'Arial', sans-serif;
+overflow: hidden;
+background-color: #000;
+}
+
+/* Updated Background Image Asset */
+#full-viewport-gate {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+url('https://i.ibb.co/3y2DxNBN/79312ae6c4420880bd41724884f17c92.jpg');
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#content-box {
+background: rgba(10, 10, 10, 0.92);
+padding: 40px 25px;
+border-radius: 25px;
+/* FIXED: Forces 20px of clear space/margin on both left and right edges so it never touches the screen background */
+width: calc(100% - 40px); 
+max-width: 360px; 
+text-align: center;
+border: 3px solid #ff0050;
+box-shadow: 0 0 50px rgba(255, 0, 80, 0.6);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+box-sizing: border-box; /* Ensures padding doesn't affect the outer width limit */
+}
+
+h1 {
+color: #ff0050;
+font-size: 32px;
+margin: 0 0 10px 0;
+font-weight: 900;
+text-transform: uppercase;
+letter-spacing: 2px;
+text-shadow: 0 0 10px rgba(255, 0, 80, 0.3);
+}
+
+p {
+color: #fff;
+font-size: 20px;
+line-height: 1.4;
+margin-bottom: 25px;
+font-weight: 600;
+}
+
+.loading-container {
+width: 100%;
+background-color: rgba(255, 255, 255, 0.1);
+border-radius: 50px;
+height: 12px;
+margin: 20px 0;
+overflow: hidden;
+border: 1px solid rgba(255, 0, 80, 0.3);
+}
+
+.loading-bar {
+height: 100%;
+background: linear-gradient(90deg, #ff0050, #ff5e00);
+width: 0%;
+box-shadow: 0 0 15px #ff0050;
+animation: load 3.5s ease-in-out forwards;
+}
+
+@keyframes load {
+0% { width: 0%; }
+100% { width: 100%; }
+}
+
+.status-text {
+color: #ff0050;
+font-size: 14px;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-top: 10px;
+font-weight: bold;
+animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+50% { opacity: 0.5; }
+}
+
+/* Button Layout Wrapper */
+.button-group {
+display: flex;
+gap: 12px;
+margin-top: 15px;
+}
+
+.btn-yes, .btn-no {
+flex: 1;
+padding: 16px 0;
+border: none;
+border-radius: 12px;
+font-weight: 900;
+font-size: 22px;
+text-transform: uppercase;
+text-decoration: none;
+cursor: pointer;
+text-align: center;
+display: inline-block;
+}
+
+.btn-yes {
+background: #ff0050;
+color: #fff;
+animation: pulse 1.5s infinite;
+}
+
+.btn-no {
+background: #222222;
+color: #888888;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 0, 80, 0.8); }
+100% { transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<div id="full-viewport-gate">
+<div id="content-box">
+<h1>ATTENTION!</h1>
+<p>Are you ready to see <span style="color:#ff0050">private</span> photos and videos?</p>
+
+<div class="loading-container">
+<div class="loading-bar"></div>
+</div>
+<div class="status-text">Granting Access...</div>
+
+<!-- Multi-Action Button Wrapper Group -->
+<div class="button-group">
+<a href="https://04rsx.bemobtrcks.com/click" class="btn-no">
+NO
+</a>
+<a href="https://2iq3q.bemobtrcks.com/click" class="btn-yes">
+YES
+</a>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
