@@ -1,170 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-mz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATTENTION!</title>
-
-<style>
-body, html {
-height: 100%;
-margin: 0;
-font-family: 'Arial Black', 'Arial', sans-serif;
-overflow: hidden;
-background-color: #000;
-}
-
-/* Updated Background Image Asset */
-#full-viewport-gate {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: 9999;
-background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
-url('https://i.ibb.co/3y2DxNBN/79312ae6c4420880bd41724884f17c92.jpg');
-background-size: cover;
-background-position: center;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-#content-box {
-background: rgba(10, 10, 10, 0.92);
-padding: 40px 25px;
-border-radius: 25px;
-/* FIXED: Forces 20px of clear space/margin on both left and right edges so it never touches the screen background */
-width: calc(100% - 40px); 
-max-width: 360px; 
-text-align: center;
-border: 3px solid #ff0050;
-box-shadow: 0 0 50px rgba(255, 0, 80, 0.6);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-box-sizing: border-box; /* Ensures padding doesn't affect the outer width limit */
-}
-
-h1 {
-color: #ff0050;
-font-size: 32px;
-margin: 0 0 10px 0;
-font-weight: 900;
-text-transform: uppercase;
-letter-spacing: 2px;
-text-shadow: 0 0 10px rgba(255, 0, 80, 0.3);
-}
-
-p {
-color: #fff;
-font-size: 20px;
-line-height: 1.4;
-margin-bottom: 25px;
-font-weight: 600;
-}
-
-.loading-container {
-width: 100%;
-background-color: rgba(255, 255, 255, 0.1);
-border-radius: 50px;
-height: 12px;
-margin: 20px 0;
-overflow: hidden;
-border: 1px solid rgba(255, 0, 80, 0.3);
-}
-
-.loading-bar {
-height: 100%;
-background: linear-gradient(90deg, #ff0050, #ff5e00);
-width: 0%;
-box-shadow: 0 0 15px #ff0050;
-animation: load 3.5s ease-in-out forwards;
-}
-
-@keyframes load {
-0% { width: 0%; }
-100% { width: 100%; }
-}
-
-.status-text {
-color: #ff0050;
-font-size: 14px;
-text-transform: uppercase;
-letter-spacing: 1px;
-margin-top: 10px;
-font-weight: bold;
-animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-50% { opacity: 0.5; }
-}
-
-/* Button Layout Wrapper */
-.button-group {
-display: flex;
-gap: 12px;
-margin-top: 15px;
-}
-
-.btn-yes, .btn-no {
-flex: 1;
-padding: 16px 0;
-border: none;
-border-radius: 12px;
-font-weight: 900;
-font-size: 22px;
-text-transform: uppercase;
-text-decoration: none;
-cursor: pointer;
-text-align: center;
-display: inline-block;
-}
-
-.btn-yes {
-background: #ff0050;
-color: #fff;
-animation: pulse 1.5s infinite;
-}
-
-.btn-no {
-background: #222222;
-color: #888888;
-border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@keyframes pulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 0, 80, 0.8); }
-100% { transform: scale(1); }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso a Vídeos</title>
+    <style>
+        body { margin: 0; background-color: #000; font-family: sans-serif; }
+        .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+        .image-wrapper { position: relative; }
+        .image-wrapper img { width: 100%; display: block; filter: brightness(70%); }
+        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .play-icon::after { content: ''; border-left: 15px solid white; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(5px); }
+        .modal { background: #fff; padding: 40px; border-radius: 25px; text-align: center; width: 85%; max-width: 450px; }
+        h2 { font-size: 28px; margin-bottom: 20px; font-weight: 800; }
+        p { font-size: 18px; margin-bottom: 40px; line-height: 1.5; color: #333; }
+        .cta-button { display: block; background: #007bff; color: white; padding: 24px 0; text-decoration: none; border-radius: 15px; font-size: 26px; font-weight: 900; text-transform: uppercase; box-shadow: 0 6px 12px rgba(0,123,255,0.3); transition: transform 0.2s; }
+        .cta-button:active { transform: scale(0.98); }
+    </style>
 </head>
 <body>
 
-<div id="full-viewport-gate">
-<div id="content-box">
-<h1>ATTENTION!</h1>
-<p>Are you ready to see <span style="color:#ff0050">private</span> photos and videos?</p>
+    <div class="grid-container">
+        <div class="image-wrapper"><img src="https://i.ibb.co/7tZqqQp1/79671e8f067fcc99e0a38b21795ca948.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/JRKVzWPj/0924b8449ac2ebfab50d244f923d3f08.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/zHrGcmCv/12754faef787e519796d852ad54f249a.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/ZR5WpQ7N/d817e4c16095c119dd3774aa1efe9c9f.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/CpVRvz6c/d40b71c48ed5f275de441c755c88bb7d.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/x0xdtjT/64693749cf3d4952adccd3c0e99cbceb.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/YFNXc0Xd/c3f809c8be5fc2ad658d67262949b9a2.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/3mXGRJQ4/455f7bb33a900ca1851d46c66549f15d.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/KxWt6dFD/8e8b3f5a4878c0496480655ead670675.jpg"><div class="play-icon"></div></div>
+        <div class="image-wrapper"><img src="https://i.ibb.co/yc24jyMX/19ff97366d6d05811def04ef5e65c558.jpg"><div class="play-icon"></div></div>
+    </div>
 
-<div class="loading-container">
-<div class="loading-bar"></div>
-</div>
-<div class="status-text">Granting Access...</div>
-
-<!-- Multi-Action Button Wrapper Group -->
-<div class="button-group">
-<a href="https://32g71.bemobtrk.com/click" class="btn-no">
-NO
-</a>
-<a href="https://32g71.bemobtrk.com/click" class="btn-yes">
-YES
-</a>
-</div>
-
-</div>
-</div>
-
+    <div class="overlay">
+        <div class="modal">
+            <h2>ATENÇÃO!</h2>
+            <p>Poderá ver vídeos sensuais. Clique no botão Continuar e seja discreto!</p>
+            <a href="https://mypage.name.ng" class="cta-button">Continuar</a>
+        </div>
+    </div>
 </body>
+    
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1065253976163918');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1065253976163918&ev=PageView&noscript=1"
+/></noscript>
 </html>
