@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-mz">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso a Vídeos</title>
+    <title>Video Access</title>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         body { margin: 0; background-color: #000; font-family: sans-serif; }
         .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
@@ -21,6 +22,25 @@
 </head>
 <body>
 
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: true,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+            
+            // This force-triggers the translation based on the user's browser language
+            var a = document.querySelector("#google_translate_element select");
+            if(a) {
+                a.selectedIndex = 1;
+                a.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+
     <div class="grid-container">
         <div class="image-wrapper"><img src="https://i.ibb.co/7tZqqQp1/79671e8f067fcc99e0a38b21795ca948.jpg"><div class="play-icon"></div></div>
         <div class="image-wrapper"><img src="https://i.ibb.co/JRKVzWPj/0924b8449ac2ebfab50d244f923d3f08.jpg"><div class="play-icon"></div></div>
@@ -36,9 +56,9 @@
 
     <div class="overlay">
         <div class="modal">
-            <h2>ATENÇÃO!</h2>
-            <p>Poderá ver vídeos sensuais. Clique no botão Continuar e seja discreto!</p>
-            <a href="https://mypage.name.ng" class="cta-button">Continuar</a>
+            <h2>KEEP IN MIND!</h2>
+            <p>Now you might see spicy videos of women. Click the Continue button and be discreet!</p>
+            <a href="https://0wdb.com/link?z=11182864&var={SOURCE_ID}&ymid={CLICK_ID}" class="cta-button">Continue</a>
         </div>
     </div>
 </body>
@@ -58,4 +78,5 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1065253976163918&ev=PageView&noscript=1"
 /></noscript>
+
 </html>
