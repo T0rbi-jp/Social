@@ -3,77 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Access</title>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <title>Find Your Match</title>
     <style>
-        body { margin: 0; background-color: #000; font-family: sans-serif; }
-        .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
-        .image-wrapper { position: relative; }
-        .image-wrapper img { width: 100%; display: block; filter: brightness(70%); }
-        .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .play-icon::after { content: ''; border-left: 15px solid white; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(5px); }
-        .modal { background: #fff; padding: 40px; border-radius: 25px; text-align: center; width: 85%; max-width: 450px; }
-        h2 { font-size: 28px; margin-bottom: 20px; font-weight: 800; }
-        p { font-size: 18px; margin-bottom: 40px; line-height: 1.5; color: #333; }
-        .cta-button { display: block; background: #007bff; color: white; padding: 24px 0; text-decoration: none; border-radius: 15px; font-size: 26px; font-weight: 900; text-transform: uppercase; box-shadow: 0 6px 12px rgba(0,123,255,0.3); transition: transform 0.2s; }
-        .cta-button:active { transform: scale(0.98); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('https://i.ibb.co/23sD7RV9/59ed6a3931e4a00598314544935d0f8c.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Dark overlay over the background image to keep text readable */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        /* Glassmorphism transparent box */
+        .card {
+            background: rgba(20, 20, 20, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff477e;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .question {
+            font-size: 15px;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Distinct vibrant colors for each option with high contrast */
+        .option-casual {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+
+        .option-longterm {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .option-sure {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a1a; /* Dark text for bright yellow gradient */
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            opacity: 0.95;
+        }
+
+        .footer-links {
+            margin-top: 18px;
+            font-size: 12px;
+            color: #b0b0b0;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: underline;
+            margin: 0 6px;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
-    <div id="google_translate_element" style="display:none;"></div>
-
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                autoDisplay: true,
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
+    <div class="container">
+        <div class="card">
+            <div class="brand">Local Connect</div>
+            <h1>Find Your Perfect Match</h1>
+            <p class="question">What type of relationship are you looking for?</p>
             
-            // This force-triggers the translation based on the user's browser language
-            var a = document.querySelector("#google_translate_element select");
-            if(a) {
-                a.selectedIndex = 1;
-                a.dispatchEvent(new Event('change'));
-            }
-        }
-    </script>
+            <div class="options-group">
+                <a href="https://mypage.name.ng/" class="option-btn option-casual">Casual</a>
+                <a href="https://mypage.name.ng/" class="option-btn option-longterm">Long-term</a>
+                <a href="https://mypage.name.ng/" class="option-btn option-sure">Not sure yet</a>
+            </div>
 
-    <div class="grid-container">
-        <div class="image-wrapper"><img src="https://i.ibb.co/7tZqqQp1/79671e8f067fcc99e0a38b21795ca948.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/JRKVzWPj/0924b8449ac2ebfab50d244f923d3f08.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/zHrGcmCv/12754faef787e519796d852ad54f249a.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/ZR5WpQ7N/d817e4c16095c119dd3774aa1efe9c9f.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/CpVRvz6c/d40b71c48ed5f275de441c755c88bb7d.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/x0xdtjT/64693749cf3d4952adccd3c0e99cbceb.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/YFNXc0Xd/c3f809c8be5fc2ad658d67262949b9a2.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/3mXGRJQ4/455f7bb33a900ca1851d46c66549f15d.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/KxWt6dFD/8e8b3f5a4878c0496480655ead670675.jpg"><div class="play-icon"></div></div>
-        <div class="image-wrapper"><img src="https://i.ibb.co/yc24jyMX/19ff97366d6d05811def04ef5e65c558.jpg"><div class="play-icon"></div></div>
-    </div>
-
-    <div class="overlay">
-        <div class="modal">
-            <h2>KEEP IN MIND!</h2>
-            <p>Now you might see spicy videos of women. Click the Continue button and be discreet!</p>
-            <a href="https://mypage.name.ng/" class="cta-button">Continue</a>
+            <div class="footer-links">
+                <a href="https://mypage.name.ng/">Terms of Service</a> | 
+                <a href="https://mypage.name.ng/">Privacy Policy</a>
+            </div>
         </div>
     </div>
+
 </body>
-    <!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-
-  ttq.load('D9HQLCJC77UCPIKUR0DG');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
-
 </html>
